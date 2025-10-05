@@ -1,17 +1,18 @@
 import consumer from "channels/consumer"
-
+console.log("📦 message_channel.js loaded");
 const messageChannel = consumer.subscriptions.create("MessageChannel", {
   connected() {
-    // console.log("connected")
+     console.log("⚡️ MessageChannel connected")
   },
 
   disconnected() {
+    console.log("⚡️ MessageChannel disconnected")
   },
 
   received(data) {
-
-  const messageDisplay = document.querySelector('#message-display')
-  messageDisplay.insertAdjacentHTML('beforeend', this.template(data))
+  console.log("⚡️ MessageChannel received data:", data);
+  const messageDisplay = document.getElementById('message-display')
+  messageDisplay.insertAdjacentHTML('beforeend', data.message);
   },
 
   template(data) {
